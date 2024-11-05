@@ -9,7 +9,7 @@ import kotlin.time.measureTime
 //<br>Input: string=["Mr John Smith      "], length=[13]
 //<br>Output: string=["Mr%20John%20Smith"]
 fun main() {
-    val testCases = listOf(Pair("Mr John Smith      ", 13), Pair("a  ", 2), Pair("a b", 3))
+    val testCases = listOf(Pair("Mr John Smith      ", 13), Pair("a  ", 2), Pair("a b", 3), Pair("     ", 3))
     testCases.forEach { test ->
         val result: String
         val duration = measureTime {
@@ -20,5 +20,12 @@ fun main() {
 }
 
 fun urlify(stringToUrlify: String, size: Int): String {
-    return ""
+    val newString = StringBuilder().apply {
+        stringToUrlify.forEachIndexed { index, char ->
+            if (index >= size) return@forEachIndexed
+            val newString = if (char == ' ') "%20" else char
+            append(newString)
+        }
+    }
+    return newString.toString()
 }
