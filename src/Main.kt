@@ -1,39 +1,20 @@
 import kotlin.time.measureTime
 
-//TIP <b>1.6 String Compression:</b> Implement a method to perform basic string compression using the counts of repeated
-//characters. For example, the string ["aabcccccaaa"] would become ["a2b1c5a3"]. If the "compressed" string would not
-//become smaller than the original string, your method should return the original string. You can assume the string has
-//only uppercase and lowercase letters (a-z).
+//TIP <b>1.7 Rotate Matrix:</b> Given an image represented by an N x N matrix, where each pixel in the image is
+//represented by an integer, write a method to rotate the image by 90 degrees. Can you do this in place?
 fun main() {
-    val testCases = listOf(Pair("aabcccccaaa", "a2b1c5a3"), Pair("abcdefg", "abcdefg"), Pair("aBbC", "aBbC"), Pair("aabcccccCcccaaa", "a2b1c5C1c3a3"), Pair("aa", "aa"))
-    testCases.forEach { test ->
-        val result: Boolean
-        val duration = measureTime {
-            result = stringCompressed(test.first) == test.second
-        }
-        println("Test [$test] completed with the result [$result] in ${duration.inWholeMilliseconds} milliseconds.")
+    val test = arrayOf(
+        intArrayOf(1, 2, 3), // Rotated (7, 4, 1)
+        intArrayOf(4, 5, 6), // Rotated (8, 5, 2)
+        intArrayOf(7, 8, 9) //  Rotated (9, 6, 3)
+    )
+    val result: Array<IntArray>
+    val duration = measureTime {
+        result = rotateMatrix(test)
     }
+    println("Test [$test] completed with the result [$result] in ${duration.inWholeMilliseconds} milliseconds.")
 }
 
-fun stringCompressed(uncompressedString: String): String {
-    var lastCharCount = 0
-    var lastChar = uncompressedString.first()
-    val compressedStringBuilder = StringBuilder()
-    uncompressedString.forEach { char ->
-        if (char == lastChar) {
-            lastCharCount += 1
-            lastChar = char
-        } else {
-            compressedStringBuilder.append("$lastChar$lastCharCount")
-            lastCharCount = 1
-            lastChar = char
-        }
-    }
-
-    // The loop finished but we didn't add the last step because nothing had changed, it just simply finished the loop.
-    compressedStringBuilder.append("$lastChar$lastCharCount")
-
-    // Build the string and compare it against the length of the uncompressed string.
-    val compressedString = compressedStringBuilder.toString()
-    return if (compressedString.length < uncompressedString.length) compressedString else uncompressedString
+fun rotateMatrix(imageMatrix: Array<IntArray>): Array<IntArray> {
+    return arrayOf()
 }
