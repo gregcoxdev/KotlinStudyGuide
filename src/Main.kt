@@ -1,31 +1,23 @@
 import kotlin.time.measureTime
 
-//TIP <b>1.3 URLify:</b> Write a method to replace all spaces in a string with '%20'. You may assume that the
-//string has sufficient space at the end to hold the additional characters, and that you are given the "true" length of
-//the string. (Note: If implementing in Java, please use a character array so that you can perform this operation in
-//place.)
+//TIP <b>1.4 Palindrome Permutation:</b> Given a string, write a function to check if it is a permutation of a palindrome. A palindrome
+//is a word or phrase that is the same forwards and backwards. A permutation is a rearrangement of letters. The
+//palindrome does not need to be limited to just dictionary words. You can ignore casing and non-letter characters.
 //<br><br>
 //TIP <b>EXAMPLE</b>
-//<br>Input: string=["Mr John Smith      "], length=[13]
-//<br>Output: string=["Mr%20John%20Smith"]
+//<br>Input: string=["Tact Coa"]
+//<br>Output: boolean=[True] (permutations: "taco cat", "atco cta", etc.)
 fun main() {
-    val testCases = listOf(Pair("Mr John Smith      ", 13), Pair("a  ", 2), Pair("a b", 3), Pair("     ", 3))
+    val testCases = listOf("tact coa", "cviic", "cigar to go tragic", "was it a cat i saw?", "abc", "")
     testCases.forEach { test ->
-        val result: String
+        val result: Boolean
         val duration = measureTime {
-            result = urlify(test.first, test.second)
+            result = isPalindromePermutation(test)
         }
         println("Test [$test] completed with the result [$result] in ${duration.inWholeMilliseconds} milliseconds.")
     }
 }
 
-fun urlify(stringToUrlify: String, size: Int): String {
-    val newString = StringBuilder().apply {
-        stringToUrlify.forEachIndexed { index, char ->
-            if (index >= size) return@forEachIndexed
-            val newString = if (char == ' ') "%20" else char
-            append(newString)
-        }
-    }
-    return newString.toString()
+fun isPalindromePermutation(string: String): Boolean {
+    return false
 }
