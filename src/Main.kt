@@ -1,28 +1,24 @@
 import kotlin.time.measureTime
 
-//TIP <b>1.2 Check Permutation:</b> Given two strings, write a method to decide if one is a permutation of the other.
+//TIP <b>1.3 URLify:</b> Write a method to replace all spaces in a string with '%20'. You may assume that the
+//string has sufficient space at the end to hold the additional characters, and that you are given the "true" length of
+//the string. (Note: If implementing in Java, please use a character array so that you can perform this operation in
+//place.)
+//<br><br>
+//TIP <b>EXAMPLE</b>
+//<br>Input: string=["Mr John Smith      "], length=[13]
+//<br>Output: string=["Mr%20John%20Smith"]
 fun main() {
-    val testCases = listOf(Pair("a", ""), Pair("a", "b"), Pair("ab", "a"), Pair("abc", "cab"), Pair("ab c", "abc"))
+    val testCases = listOf(Pair("Mr John Smith      ", 13), Pair("a  ", 2), Pair("a b", 3))
     testCases.forEach { test ->
-        val result: Boolean
+        val result: String
         val duration = measureTime {
-            result = isPermutation(test.first, test.second)
+            result = urlify(test.first, test.second)
         }
         println("Test [$test] completed with the result [$result] in ${duration.inWholeMilliseconds} milliseconds.")
     }
 }
 
-fun isPermutation(firstString: String, secondString: String): Boolean {
-    if (firstString.length != secondString.length) return false
-    val firstCharMap: MutableMap<Char, Int> = mutableMapOf()
-    val secondCharMap: MutableMap<Char, Int> = mutableMapOf()
-    firstString.forEach { char ->
-        val occurrences = firstCharMap[char] ?: 0
-        firstCharMap[char] = occurrences + 1
-    }
-    secondString.forEach { char ->
-        val occurrences = secondCharMap[char] ?: 0
-        secondCharMap[char] = occurrences + 1
-    }
-    return firstCharMap == secondCharMap
+fun urlify(stringToUrlify: String, size: Int): String {
+    return ""
 }
