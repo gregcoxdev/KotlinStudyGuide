@@ -1,7 +1,6 @@
 import kotlin.time.measureTime
 
-//TIP <b>1.1 Is Unique:</b> Implement an algorithm to determine if a string has all unique characters. What if you cannot
-//use additional data structures?
+//TIP <b>Section & Test:</b> Add details of what should be tested in this section here, along with any examples.
 fun main() {
     val testCases = listOf("value1", "value2", "value3")
     testCases.forEach { test ->
