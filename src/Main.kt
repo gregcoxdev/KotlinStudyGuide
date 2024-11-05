@@ -1,33 +1,29 @@
 import kotlin.time.measureTime
 
-//TIP <b>1.4 Palindrome Permutation:</b> Given a string, write a function to check if it is a permutation of a palindrome. A palindrome
-//is a word or phrase that is the same forwards and backwards. A permutation is a rearrangement of letters. The
-//palindrome does not need to be limited to just dictionary words. You can ignore casing and non-letter characters.
+//TIP <b>1.5 One Away:</b> There are three types of edits that can be performed on strings: Insert a character, remove a
+//character, or replace a character. Given two strings, write a function to check if they are one edit (or zero edits)
+//away.
 //<br><br>
 //TIP <b>EXAMPLE</b>
-//<br>Input: string=["Tact Coa"]
-//<br>Output: boolean=[True] (permutations: "taco cat", "atco cta", etc.)
+//<br>Input: firstString=["pale"], secondString=["ple"]
+//<br>Output: boolean=[True]
+//<br>Input: firstString=["pales"], secondString=["pale"]
+//<br>Output: boolean=[True]
+//<br>Input: firstString=["pale"], secondString=["bale"]
+//<br>Output: boolean=[True]
+//<br>Input: firstString=["pale"], secondString=["bake"]
+//<br>Output: boolean=[False]
 fun main() {
-    val testCases = listOf("tact coa", "cviic", "cigar to go tragic", "was it a cat i saw?", "abc", "baa b", "")
+    val testCases = listOf(Pair("pale", "ple"), Pair("pales", "pale"), Pair("pale", "bale"), Pair("pale", "bake"), Pair("pale", "pl"), Pair("a", ""), Pair("a  ", "a"))
     testCases.forEach { test ->
         val result: Boolean
         val duration = measureTime {
-            result = isPalindromePermutation(test)
+            result = isOneAway(test.first, test.second)
         }
         println("Test [$test] completed with the result [$result] in ${duration.inWholeMilliseconds} milliseconds.")
     }
 }
 
-fun isPalindromePermutation(string: String): Boolean {
-    val stringWithOnlyLetters = string.lowercase().filter { it.isLetter() }
-    val charMap = hashMapOf<Char, Int>()
-    stringWithOnlyLetters.forEach {
-        if (charMap[it] != null) {
-            charMap.remove(it)
-        } else {
-            charMap[it] = 1
-        }
-    }
-    println("Remaining character map for [$string] is [$charMap].")
-    return charMap.size <= 1
+fun isOneAway(firstString: String, secondString: String): Boolean {
+    return false
 }
