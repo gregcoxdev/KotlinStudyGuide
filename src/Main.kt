@@ -8,7 +8,7 @@ import kotlin.time.measureTime
 //<br>Input: string=["Tact Coa"]
 //<br>Output: boolean=[True] (permutations: "taco cat", "atco cta", etc.)
 fun main() {
-    val testCases = listOf("tact coa", "cviic", "cigar to go tragic", "was it a cat i saw?", "abc", "")
+    val testCases = listOf("tact coa", "cviic", "cigar to go tragic", "was it a cat i saw?", "abc", "baa b", "")
     testCases.forEach { test ->
         val result: Boolean
         val duration = measureTime {
@@ -19,5 +19,15 @@ fun main() {
 }
 
 fun isPalindromePermutation(string: String): Boolean {
-    return false
+    val stringWithOnlyLetters = string.lowercase().filter { it.isLetter() }
+    val charMap = hashMapOf<Char, Int>()
+    stringWithOnlyLetters.forEach {
+        if (charMap[it] != null) {
+            charMap.remove(it)
+        } else {
+            charMap[it] = 1
+        }
+    }
+    println("Remaining character map for [$string] is [$charMap].")
+    return charMap.size <= 1
 }
