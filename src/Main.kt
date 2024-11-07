@@ -15,5 +15,6 @@ fun main() {
 }
 
 fun isStringRotation(s1: String, s2: String): Boolean {
-    return false
+    val s3 = s1 + s1
+    return s3.contains(s2)
 }
