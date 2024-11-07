@@ -1,46 +1,45 @@
 import kotlin.time.measureTime
 
-//TIP <b>2.6 Palindrome:</b> Implement a function to check if a linked list is a palindrome.
+//TIP <b>2.7 Intersection:</b> Given two (singly) linked lists, determine if the two lists intersect. Return the
+// intersecting node. Note that the intersection is defined based on reference, not value. That is, if the kth node of
+// the first linked list is the exact same node (by reference) as the jth node of the second linked list, then they are
+// intersecting.
+//<br><br>
+//FOLLOW-UP<br>
+//Find the intersecting node, if possible.
 fun main() {
-    val tests = listOf(
-        createSinglyLinkedList("racecar"),
-        createSinglyLinkedList("exit"),
-        createSinglyLinkedList("a"),
-        createSinglyLinkedList("")
-    )
-    tests.forEach { test ->
-        var result: Boolean
-        val durationSize = measureTime {
-            result = isPalindrome(test)
-        }
-        println("Test completed with the result [$result] in ${durationSize.inWholeMilliseconds} milliseconds.")
+    val nodes = createInterconnectedSinglyLinkedList()
+    var result: Boolean
+    val durationSize = measureTime {
+        result = isIntersecting(nodes.first, nodes.second)
     }
+    println("Test completed with the result [$result] in ${durationSize.inWholeMilliseconds} milliseconds.")
 }
 
 /**
- * We have to iterate through the entire thing in order to tell. Since we don't have the length in a Linked List, we
- * don't know when we should realistically begin mirroring to determine it's a palindrome.
+ * Explain rationale here.
  */
-fun isPalindrome(headNode: Node?): Boolean {
-    println("Test started with head node [$headNode].")
-    var currentNode = headNode
-    var palindromeStringBuilder = StringBuilder()
-    var size = 0
-    while (currentNode != null) {
-        size += 1
-        palindromeStringBuilder.append(currentNode.value)
-        currentNode = currentNode.next
+fun isIntersecting(firstHeadNode: Node?, secondHeadNode: Node?): Boolean {
+    println("Test started with first head node [$firstHeadNode], second head node [$secondHeadNode].")
+
+    // Traverse first head.
+    var currentFirstHeadNode = firstHeadNode
+    while (currentFirstHeadNode?.next != null) {
+        currentFirstHeadNode = currentFirstHeadNode.next
     }
-    if (size == 0 || size == 1) return true
-    val hasActualMidpoint = size % 2 == 1
-    val actualMidpoint = size.div(2)
-    if (hasActualMidpoint) {
-        val firstHalf = palindromeStringBuilder.substring(0, actualMidpoint)
-        val secondHalf = palindromeStringBuilder.substring(actualMidpoint + 1, size).reversed()
-        return firstHalf == secondHalf
-    } else {
-        val firstHalf = palindromeStringBuilder.substring(0, actualMidpoint)
-        val secondHalf = palindromeStringBuilder.substring(actualMidpoint, size).reversed()
-        return firstHalf == secondHalf
+
+    // Traverse second head.
+    var currentSecondHeadNode = secondHeadNode
+    while (currentSecondHeadNode?.next != null) {
+        currentSecondHeadNode = currentSecondHeadNode.next
     }
+
+    // Determine if the last nodes are equal references.
+    return currentFirstHeadNode == currentSecondHeadNode
+}
+
+fun findIntersectingNode() {
+    // To accomplish this, we should get the sizes of both, then remove off the top of the longer one until they have
+    // equal sizes. Once we do this, we should be able to iterate through both at the same time and check if they are
+    // the same node at any given point.
 }
