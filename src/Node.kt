@@ -1,6 +1,6 @@
 import kotlin.random.Random
 
-data class Node(val value: Int, var next: Node? = null) {
+data class Node(val value: Char, var next: Node? = null) {
     override fun toString(): String {
         var currentNode: Node? = this
         val stringBuilder = StringBuilder()
@@ -15,14 +15,13 @@ data class Node(val value: Int, var next: Node? = null) {
 
 /**
  * Generate a linked list with random values.
- * @param size The size of the linked list, i.e. the number of values to store in the linked list.
- * @param upperBounds The maximum generated value (non-inclusive), you'll have more duplicates the lower the value.
+ * @param string The string to split into characters and into each node of a linked list.
  */
-fun createSinglyLinkedList(size: Int, upperBounds: Int = 3): Node? {
+fun createSinglyLinkedList(string: String): Node? {
     var headNode: Node? = null
     var currentNode: Node? = null
-    for (i in 0..<size) {
-        val nextNode = Node(Random.nextInt(from = 0, until = upperBounds))
+    for (i in string.indices) {
+        val nextNode = Node(string[i])
         if (headNode == null) {
             headNode = nextNode
             currentNode = headNode
