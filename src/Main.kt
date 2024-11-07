@@ -22,8 +22,8 @@ fun main() {
     val tests = listOf(
         Pair(createSinglyLinkedList(3, 10), createSinglyLinkedList(3, 10)),
         Pair(createSinglyLinkedList(3, 10), createSinglyLinkedList(3, 10)),
-        Pair(createSinglyLinkedList(2, 10), createSinglyLinkedList(3, 10)),
-        Pair(createSinglyLinkedList(1, 10), createSinglyLinkedList(3, 10))
+        Pair(createSinglyLinkedList(3, 10), createSinglyLinkedList(3, 10)),
+        Pair(createSinglyLinkedList(3, 10), createSinglyLinkedList(3, 10))
     )
     tests.forEach { test ->
         var result: Node?
@@ -35,9 +35,34 @@ fun main() {
 }
 
 /**
- * Explain your train of thought.
+ * We're going to make an assumption that the linked lists are equal in size. If they aren't, then we'd have to go get
+ * the size in order to make sure we know where the numbers line up. But given that they're the same size, we should be
+ * able to add each index and carry over the 10's digit into the next calculation.
  */
-fun sumLists(firstLinkedList: Node?, secondLinkedList: Node?): Node? {
-    println("Test started adding nodes: $firstLinkedList + $secondLinkedList.")
-    return firstLinkedList
+fun sumLists(firstHeadNode: Node?, secondHeadNode: Node?): Node? {
+    println("Test started adding nodes: $firstHeadNode + $secondHeadNode.")
+    var tensDigit = 0
+    var currentFirstNode = firstHeadNode
+    var currentSecondNode = secondHeadNode
+    var resultNode: Node? = null
+    var currentResultNode = resultNode
+    while (currentFirstNode != null && currentSecondNode != null) {
+        val addedValue = currentFirstNode.value + currentSecondNode.value + tensDigit
+        println("Added ${currentFirstNode.value} and ${currentSecondNode.value}, plus tens place of: $tensDigit = $addedValue")
+        tensDigit = if (addedValue >= 10) 1 else 0
+        if (resultNode == null) {
+            resultNode = Node(addedValue % 10)
+            currentResultNode = resultNode.next
+        } else {
+            currentResultNode = Node(addedValue % 10)
+        }
+        currentResultNode = currentResultNode?.next
+        currentFirstNode = currentFirstNode.next
+        currentSecondNode = currentSecondNode.next
+    }
+
+    if (tensDigit > 0) {
+        currentResultNode?.next = Node(tensDigit)
+    }
+    return resultNode
 }
