@@ -1,3 +1,4 @@
+import java.util.*
 import kotlin.time.measureTime
 
 //TIP <b>3.3 Stack of Plates:</b> Imagine a (literal) stack of plates. If the stack gets too high, it might topple.
@@ -10,7 +11,7 @@ import kotlin.time.measureTime
 // Implement a function popAt(index: Int) which performs a pop operation on a specific sub-stack.
 fun main() {
     val duration = measureTime {
-        val setOfStacks = makeSetOfStacks()
+        val setOfStacks = makeSetOfStacks(20)
         for (i in 0..100) {
             setOfStacks.push(i)
         }
@@ -20,16 +21,25 @@ fun main() {
 }
 
 /**
- * Explain rationale here.
+ * To accomplish this, create a list of stacks.
+ *
+ * When you push, if the list is empty, create a stack and push to it, then add that to the list. If the list isn't
+ * empty, check the first stack if it exceeds the threshold, if it does, create a new stack and add that item to it.
+ * Then insert that stack at the 0th index of the list so it's at the front.
+ *
+ * When you pop, look at the 0th index of the list, pop from that stack. If the stack is empty, remove it from the list.
+ *
+ * When you popAt, access the index of the list and pop from that stack.
  */
-fun makeSetOfStacks(): SetOfStacks {
-    return SetOfStacks()
+fun makeSetOfStacks(threshold: Int): SetOfStacks {
+    return SetOfStacks(threshold)
 }
 
-class SetOfStacks {
+class SetOfStacks(threshold: Int) {
+
+    private val listOfStacks: List<Stack<Int>> = listOf()
 
     fun push(value: Int): Unit {
-
     }
 
     fun pop(): Int {
