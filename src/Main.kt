@@ -38,7 +38,6 @@ fun main() {
  * Explain your train of thought.
  */
 fun sumLists(firstLinkedList: Node?, secondLinkedList: Node?): Node? {
-    println("Test started with first node: $firstLinkedList")
-    println("Then adding node: $secondLinkedList")
+    println("Test started adding nodes: $firstLinkedList + $secondLinkedList.")
     return firstLinkedList
 }
