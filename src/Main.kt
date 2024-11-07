@@ -20,5 +20,8 @@ fun main() {
 
 fun deleteAnyMiddleNode(headNode: Node?): Node? {
     println("Test started with headNode: $headNode")
+    if (headNode?.next == null) return headNode // Is only a size 1 linked list.
+    if (headNode.next?.next == null) return headNode // Is only a size 2 linked list.
+    headNode.next = headNode.next?.next // You can keep iterating through here until you find one you want to delete.
     return headNode
 }
