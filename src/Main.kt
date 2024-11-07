@@ -1,24 +1,50 @@
 import java.util.*
 import kotlin.time.measureTime
 
-//TIP <b>3.4 Queue via Stacks:</b> Implement a MyQueue class which implements a queue using two stacks.
+//TIP <b>3.5 Sort Stack:</b> Write a program to sort a stack such that the smallest items are on the top. You can use an
+// additional temporary stack, but you may not copy the elements into any other data structure (such as an array). The
+// stack supports the following operations: push, pop, peek and isEmpty.
 fun main() {
     val duration = measureTime {
-        val myQueue = makeMyQueue()
+        val sortedStack = SortedStack()
+        sortedStack.push(5)
+        sortedStack.push(3)
+        sortedStack.push(7)
+        sortedStack.push(24)
+        println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
+        println("Sorted Stack Peek: value=[${sortedStack.peek()}]")
+        println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
+        println("Sorted Stack Peek: value=[${sortedStack.peek()}]")
+        println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
+        println("Sorted Stack Peek: value=[${sortedStack.peek()}]")
+        println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
+        println("Sorted Stack Peek: value=[${sortedStack.peek()}]")
     }
     println("Test completed in ${duration.inWholeMilliseconds} milliseconds.")
 }
 
 /**
- * One way would be to push everything into a single stack, then as we pop, pop everything up until the last node, which
- * would give us the "top" of the queue. Put the rest in the stack again. There are ways to optimize this, by
- * potentially keeping a sorted stack after the first pop (sort when you add it all back in the stack again) and then
- * going through that stack until it's empty then re-sorting again when you pop.
+ * Write your rationale here.
  */
-fun makeMyQueue(): MyQueue {
-    return MyQueue()
+fun makeSortedStack(): SortedStack {
+    return SortedStack()
 }
 
-class MyQueue() {
+class SortedStack {
 
+    fun push(value: Int) {
+
+    }
+
+    fun pop(): Int {
+        return -1
+    }
+
+    fun peek(): Int {
+        return -1
+    }
+
+    fun isEmpty(): Boolean {
+        return true
+    }
 }
