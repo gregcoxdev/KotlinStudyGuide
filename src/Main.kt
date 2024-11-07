@@ -8,9 +8,16 @@ fun main() {
     val duration = measureTime {
         val sortedStack = SortedStack()
         sortedStack.push(5)
+        println("Peek at the top: ${sortedStack.peek()}")
         sortedStack.push(3)
+        println("Peek at the top: ${sortedStack.peek()}")
         sortedStack.push(7)
-        sortedStack.push(24)
+        println("Peek at the top: ${sortedStack.peek()}")
+        sortedStack.push(4)
+        println("Peek at the top: ${sortedStack.peek()}")
+        sortedStack.push(6)
+        println("Peek at the top: ${sortedStack.peek()}")
+        sortedStack.push(10)
         println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
         println("Sorted Stack Peek: value=[${sortedStack.peek()}]")
         println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
@@ -18,13 +25,13 @@ fun main() {
         println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
         println("Sorted Stack Peek: value=[${sortedStack.peek()}]")
         println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
-        println("Sorted Stack Peek: value=[${sortedStack.peek()}]")
     }
     println("Test completed in ${duration.inWholeMilliseconds} milliseconds.")
 }
 
 /**
- * Write your rationale here.
+ * You probably should do the sorting in the peek or pop methods so that way you can push multiple times with extra
+ * overhead.
  */
 fun makeSortedStack(): SortedStack {
     return SortedStack()
@@ -33,7 +40,6 @@ fun makeSortedStack(): SortedStack {
 class SortedStack {
 
     fun push(value: Int) {
-
     }
 
     fun pop(): Int {
