@@ -11,21 +11,21 @@ import kotlin.time.measureTime
 //Output: [LEFT] 3 -> 1 -> 2 -> [RIGHT] 10 -> 5 -> 5 -> 8
 fun main() {
     val tests = listOf(
-        createSinglyLinkedList(9, 500),
-        createSinglyLinkedList(4, 500),
-        createSinglyLinkedList(2, 500),
-        createSinglyLinkedList(1, 500)
+        Pair(createSinglyLinkedList(20, 500), 250),
+        Pair(createSinglyLinkedList(10, 500), 250),
+        Pair(createSinglyLinkedList(2, 500), 250),
+        Pair(createSinglyLinkedList(1, 500), 250)
     )
     tests.forEach { test ->
         var result: Node?
         val durationSize = measureTime {
-            result = partition(test)
+            result = partition(test.first, test.second)
         }
         println("Test completed with the result [$result] in ${durationSize.inWholeMilliseconds} milliseconds.")
     }
 }
 
-fun partition(headNode: Node?): Node? {
+fun partition(headNode: Node?, partitionValue: Int): Node? {
     println("Test started with head node: $headNode")
     return headNode
 }
