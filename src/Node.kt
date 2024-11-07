@@ -1,6 +1,17 @@
 import kotlin.random.Random
 
-data class Node(val value: Int, var next: Node? = null)
+data class Node(val value: Int, var next: Node? = null) {
+    override fun toString(): String {
+        var currentNode: Node? = this
+        val stringBuilder = StringBuilder()
+        while (currentNode != null) {
+            stringBuilder.append("${currentNode.value} -> ")
+            currentNode = currentNode.next
+        }
+        stringBuilder.append("null")
+        return stringBuilder.toString()
+    }
+}
 
 /**
  * Generate a linked list with random values.
