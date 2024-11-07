@@ -21,7 +21,7 @@ data class Node(val value: Int, var next: Node? = null) {
 fun createSinglyLinkedList(size: Int, upperBounds: Int = 3): Node? {
     var headNode: Node? = null
     var currentNode: Node? = null
-    for (i in 0..size) {
+    for (i in 0..<size) {
         val nextNode = Node(Random.nextInt(from = 0, until = upperBounds))
         if (headNode == null) {
             headNode = nextNode
