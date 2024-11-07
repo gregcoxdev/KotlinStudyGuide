@@ -1,20 +1,19 @@
 import kotlin.time.measureTime
 
-//TIP <b>1.8 Zero Matrix:</b> Write an algorithm such that if an element in an M X N matrix is 0, its entire row and
-//column are set to 0.
+//TIP <b>1.9 String Rotation:</b> Assume you have a method isSubstring which checks if one word is a substring of another.
+//Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring
+//(e.g., "waterbottle" is a rotation of "erbottlewat").
 fun main() {
-    val test = arrayOf(
-        intArrayOf( 1,   2,  3,  4,  5),
-        intArrayOf( 6,   7,  8,  9, 10),
-        intArrayOf(11,  12, 13, 14, 15),
-        intArrayOf(16,  17, 18, 19, 20)
-    )
-    val duration = measureTime {
-        zeroMatrix(test)
+    val tests = listOf(Pair("waterbottle", "erbottlewat"), Pair("aa", "aa"), Pair("", ""), Pair("shirt", "pants"))
+    tests.forEach { test ->
+        var result: Boolean? = null
+        val duration = measureTime {
+            result = isStringRotation(test.first, test.second)
+        }
+        println("Test [${test}] completed with the result [$result] in ${duration.inWholeMilliseconds} milliseconds.")
     }
-    println("Test [${test.contentDeepToString()}] completed with the result [$result] in ${duration.inWholeMilliseconds} milliseconds.")
 }
 
-fun zeroMatrix(imageMatrix: Array<IntArray>): Unit {
-
+fun isStringRotation(s1: String, s2: String): Boolean {
+    return false
 }
