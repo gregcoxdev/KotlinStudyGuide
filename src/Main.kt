@@ -18,6 +18,7 @@ fun main() {
         sortedStack.push(6)
         println("Peek at the top: ${sortedStack.peek()}")
         sortedStack.push(10)
+        println("Stack sorted: ${sortedStack.stack}")
         println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
         println("Sorted Stack Peek: value=[${sortedStack.peek()}]")
         println("Sorted Stack Pop: value=[${sortedStack.pop()}], isEmpty=[${sortedStack.isEmpty()}]")
@@ -39,18 +40,44 @@ fun makeSortedStack(): SortedStack {
 
 class SortedStack {
 
+    val stack: Stack<Int> = Stack()
+    val sortingStack: Stack<Int> = Stack()
+
     fun push(value: Int) {
+        if (stack.isEmpty() || value <= stack.peek()) {
+            stack.push(value)
+            println("Pushed $value, stack=[$stack].")
+        } else {
+
+            while (stack.isNotEmpty() && stack.peek() < value) {
+                println("Value [$value] is higher than the top of the stack. stack=[$stack]")
+                val popped = stack.pop()
+                println("Popped stack: $stack")
+                sortingStack.push(popped)
+                println("Pushed sorting stack: $sortingStack")
+            }
+
+            sortingStack.push(value)
+            println("Pushed actual value to sorting stack: $sortingStack")
+
+            while(sortingStack.isNotEmpty()) {
+                val popped = sortingStack.pop()
+                println("Popped sorting stack: $sortingStack")
+                stack.push(popped)
+                println("Pushed stack: $stack")
+            }
+        }
     }
 
     fun pop(): Int {
-        return -1
+        return stack.pop()
     }
 
     fun peek(): Int {
-        return -1
+        return stack.peek()
     }
 
     fun isEmpty(): Boolean {
-        return true
+        return stack.isEmpty()
     }
 }
