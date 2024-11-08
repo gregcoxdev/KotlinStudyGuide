@@ -1,48 +1,24 @@
 
 
+import com.sun.source.tree.Tree
 import treesAndGraphs.TreeNode
+import treesAndGraphs.createBinaryTree
+import java.util.LinkedList
 import kotlin.time.measureTime
 
-//TIP <b>4.2 Minimal Tree:</b> Given a sorted (increasing order) array with a unique integer elements, write an
-// algorithm to create a binary search tree with minimal height.
+//TIP <b>4.3 List of Depths:</b> Given a binary tree, design an algorithm which creates a linked list of all the nodes
+// at each depth. (e.g. If you have a tree with depth D, you'll have D linked lists).
 fun main() {
-    var result: TreeNode?
+    var result: Map<Int, LinkedList<TreeNode>>?
     val duration = measureTime {
-        result = createMinimalTree(intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+        result = createListOfDepths(node = createBinaryTree())
     }
-    println("Test completed with tree: \n$result in ${duration.inWholeMilliseconds} milliseconds.")
+    println("Test completed with $result in ${duration.inWholeMilliseconds} milliseconds.")
 }
 
 /**
  * Explain your rationale here.
  */
-private fun createMinimalTree(array: IntArray): TreeNode? {
-    val headNode = recursivelyMakeBinarySearchTree(array, 0, array.size - 1)
-    return headNode
-}
-
-private fun recursivelyMakeBinarySearchTree(array: IntArray, startIndex: Int, endIndex: Int): TreeNode? {
-    val middleIndex = (startIndex + endIndex) / 2
-    val middleNode = TreeNode(array[middleIndex])
-    println("Created middle node: ${middleNode.value}")
-    if (startIndex > endIndex) return null
-    middleNode.left = if (endIndex >= 0) {
-        println("Creating left node from: [$startIndex to ${middleIndex - 1}]")
-        recursivelyMakeBinarySearchTree(array, startIndex, middleIndex - 1)
-    } else {
-        println("Can't move any further left, at start index [$startIndex].")
-        null
-    }
-    middleNode.right = if (startIndex < array.size) {
-        println("Creating right node from: [${middleIndex + 1} to $endIndex]")
-        recursivelyMakeBinarySearchTree(
-            array = array,
-            startIndex = middleIndex + 1,
-            endIndex = endIndex
-        )
-    } else {
-        println("Can't move any further right, at end index [$endIndex].")
-        null
-    }
-    return middleNode
+private fun createListOfDepths(node: TreeNode): Map<Int, LinkedList<TreeNode>> {
+    return mapOf()
 }
