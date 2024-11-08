@@ -20,5 +20,15 @@ fun main() {
  * Explain your rationale here.
  */
 private fun createListOfDepths(node: TreeNode): Map<Int, LinkedList<TreeNode>> {
-    return mapOf()
+    val treeMap = mutableMapOf<Int, LinkedList<TreeNode>>()
+    recursivelyAddChildren(treeMap, 0, node)
+    return treeMap
+}
+
+private fun recursivelyAddChildren(treeMap: MutableMap<Int, LinkedList<TreeNode>>, depth: Int, node: TreeNode) {
+    val list = LinkedList<TreeNode>()
+    list.add(node)
+    treeMap[depth]?.addAll(list) ?: run { treeMap[depth] = list }
+    node.left?.let { recursivelyAddChildren(treeMap, depth + 1, it) }
+    node.right?.let { recursivelyAddChildren(treeMap, depth + 1, it) }
 }
