@@ -1,43 +1,20 @@
-import treesAndGraphs.Graph
-import treesAndGraphs.Node
-import treesAndGraphs.createDirectedGraph
-import java.util.*
+
+import treesAndGraphs.TreeNode
 import kotlin.time.measureTime
 
-//TIP <b>4.1 Route Between Nodes:</b> Given a directed graph and two nodes (S and E), design an algorithm to find out whether
-// there is a route from S to E.
+//TIP <b>4.2 Minimal Tree:</b> Given a sorted (increasing order) array with a unique integer elements, write an
+// algorithm to create a binary search tree with minimal height.
 fun main() {
-    var result: Boolean? = null
+    var result: TreeNode?
     val duration = measureTime {
-        val graph = createDirectedGraph()
-        result = isRouteBetweenNodes(graph, graph.nodes.first(), graph.nodes.last())
+        result = createMinimalTree(intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
     }
-    println("Test completed with $result in ${duration.inWholeMilliseconds} milliseconds.")
+    println("Test completed with tree: \n$result in ${duration.inWholeMilliseconds} milliseconds.")
 }
 
 /**
- * Explain your rational here.
+ * Explain your rationale here.
  */
-private fun isRouteBetweenNodes(graph: Graph, s: Node, e: Node): Boolean {
-    val queue: Queue<Node> = LinkedList()
-    queue.add(s)
-    while (queue.isNotEmpty()) {
-        val popped = queue.poll()
-        popped.isVisited = true
-        println("Popped node: $popped.")
-        if (popped == e) {
-            println("Popped node matched e! node=[$popped], e=[$e].")
-            return true
-        }
-        println("We aren't at the goal node yet, searching children.")
-        popped.children.forEach {
-            if (!it.isVisited) {
-                println("Added $it to the queue.")
-                queue.add(it)
-            } else {
-                println("Node $it was already visited, not adding it again.")
-            }
-        }
-    }
-    return false
+private fun createMinimalTree(array: IntArray): TreeNode? {
+    return null
 }
