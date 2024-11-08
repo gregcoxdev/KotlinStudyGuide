@@ -6,12 +6,13 @@ import treesAndGraphs.createBinaryTree
 import java.util.LinkedList
 import kotlin.time.measureTime
 
-//TIP <b>4.3 List of Depths:</b> Given a binary tree, design an algorithm which creates a linked list of all the nodes
-// at each depth. (e.g. If you have a tree with depth D, you'll have D linked lists).
+//TIP <b>4.4 Check Balanced:</b> Implement a function to check if a binary tree is balanced. For the purposes of this
+// question, a balanced tree is defined to be a tree such that the heights of the two subtrees of any node never differ
+// by more than one.
 fun main() {
-    var result: Map<Int, LinkedList<TreeNode>>?
+    var result: Boolean?
     val duration = measureTime {
-        result = createListOfDepths(node = createBinaryTree())
+        result = isTreeBalanced(node = createBinaryTree())
     }
     println("Test completed with $result in ${duration.inWholeMilliseconds} milliseconds.")
 }
@@ -19,16 +20,6 @@ fun main() {
 /**
  * Explain your rationale here.
  */
-private fun createListOfDepths(node: TreeNode): Map<Int, LinkedList<TreeNode>> {
-    val treeMap = mutableMapOf<Int, LinkedList<TreeNode>>()
-    recursivelyAddChildren(treeMap, 0, node)
-    return treeMap
-}
-
-private fun recursivelyAddChildren(treeMap: MutableMap<Int, LinkedList<TreeNode>>, depth: Int, node: TreeNode) {
-    val list = LinkedList<TreeNode>()
-    list.add(node)
-    treeMap[depth]?.addAll(list) ?: run { treeMap[depth] = list }
-    node.left?.let { recursivelyAddChildren(treeMap, depth + 1, it) }
-    node.right?.let { recursivelyAddChildren(treeMap, depth + 1, it) }
+private fun isTreeBalanced(node: TreeNode): Boolean {
+    return false
 }
