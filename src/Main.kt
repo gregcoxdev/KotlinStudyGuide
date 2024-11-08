@@ -1,24 +1,22 @@
+import treesAndGraphs.Graph
+import treesAndGraphs.Node
+import treesAndGraphs.createDirectedGraph
 import kotlin.time.measureTime
 
-//TIP <b>3.6 Animal Shelter:</b> An animal shelter, which holds only dogs and cats, operates on a strictly "first in, first
-// out" basis. People must adopt either the "oldest" (based on arrival time) of all animals at the shelter, or they can
-// select whether they would prefer a dog or a cat (and will receive the oldest animal of that type). They cannot select
-// which specific animal they would like. Create the data structures to maintain this system and implement operations
-// such as enqueue, dequeueAny, dequeueDog, and dequeueCat. You may use the built-in LinkedList data structure.
+//TIP <b>4.1 Route Between Nodes:</b> Given a directed graph and two nodes (S and E), design an algorithm to find out whether
+// there is a route from S to E.
 fun main() {
+    var result: Boolean? = null
     val duration = measureTime {
-        val animalShelter = AnimalShelter()
+        val graph = createDirectedGraph()
+        result = isRouteBetweenNodes(graph, graph.nodes.first(), graph.nodes.last())
     }
-    println("Test completed in ${duration.inWholeMilliseconds} milliseconds.")
+    println("Test completed with $result in ${duration.inWholeMilliseconds} milliseconds.")
 }
 
 /**
- * Write rationale here.
+ * Explain your rational here.
  */
-fun makeAnimalShelter(): AnimalShelter {
-    return AnimalShelter()
-}
-
-class AnimalShelter {
-
+private fun isRouteBetweenNodes(graph: Graph, s: Node, e: Node): Boolean {
+    return false
 }
