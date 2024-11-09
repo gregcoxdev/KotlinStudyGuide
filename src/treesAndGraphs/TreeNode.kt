@@ -20,8 +20,11 @@ fun createBinaryTree(): TreeNode {
     val headNode = TreeNode(1)
     val leftHeadNode = TreeNode(2).also { headNode.left = it }
     val rightHeadNode = TreeNode(3).also { headNode.right = it }
-    TreeNode(4).also { leftHeadNode.left = it }
-    TreeNode(5).also { leftHeadNode.right = it }
-    TreeNode(6).also { rightHeadNode.left = it }
+    val leftLeftHeadNode = TreeNode(4).also { leftHeadNode.left = it }
+    val rightLeftHeadNode = TreeNode(5).also { leftHeadNode.right = it }
+    val leftRightHeadNode = TreeNode(6).also { rightHeadNode.left = it }
+    val rightRightHeadNode =  TreeNode(7).also { rightHeadNode.right = it  }
+    val rightRightRightHeadNode = TreeNode(8).also { rightRightHeadNode.right = it  }
+    TreeNode(9).also { rightRightRightHeadNode.right = it  }
     return headNode
 }
