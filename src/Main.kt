@@ -23,5 +23,19 @@ fun main() {
  * Explain your rationale here.
  */
 private fun isTreeBalanced(node: TreeNode): Boolean {
-    return false
+    val leftDepth = if (node.left != null) {
+        getDepth(node.left, 1)
+    } else 0
+    val rightDepth = if (node.right != null) {
+        getDepth(node.right, 1)
+    } else 0
+    val depthDifference = abs(leftDepth - rightDepth) <= 1
+    println("Left Depth: $leftDepth")
+    println("Right Depth: $rightDepth")
+    return depthDifference
+}
+
+private fun getDepth(node: TreeNode?, depth: Int): Int {
+    if (node == null) return depth
+    return max(getDepth(node.left, depth + 1), getDepth(node.right, depth + 1))
 }
