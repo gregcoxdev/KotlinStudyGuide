@@ -15,7 +15,7 @@ data class TreeNode(var value: Int, var left: TreeNode? = null , var right: Tree
     }
 }
 
-fun createBinaryTreeWithNodes(): Triple<TreeNode, TreeNode, TreeNode> {
+fun createBinaryTreeWithNodes(): TreeNode {
     val headNode = TreeNode(10)
     val leftHeadNode = TreeNode(6).also { headNode.left = it }
     val rightHeadNode = TreeNode(15).also { headNode.right = it }
@@ -25,5 +25,5 @@ fun createBinaryTreeWithNodes(): Triple<TreeNode, TreeNode, TreeNode> {
     val rightRightHeadNode =  TreeNode(23).also { rightHeadNode.right = it  }
     val rightRightRightHeadNode = TreeNode(32).also { rightRightHeadNode.right = it  }
     TreeNode(45).also { rightRightRightHeadNode.right = it  }
-    return Triple(headNode, leftRightHeadNode, rightRightRightHeadNode)
+    return headNode
 }
