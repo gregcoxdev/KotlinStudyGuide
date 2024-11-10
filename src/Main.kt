@@ -25,5 +25,15 @@ fun main() {
  * Write rationale here.
  */
 private fun firstCommonAncestor(root: TreeNode?, node1: TreeNode, node2: TreeNode): TreeNode? {
-    return null
+    if (root == null) return null
+    if (root == node1 || root == node2) return root
+
+    val leftAncestor = firstCommonAncestor(root.left, node1, node2)
+    val rightAncestor = firstCommonAncestor(root.right, node1, node2)
+
+    return if (leftAncestor != null && rightAncestor != null) {
+        root
+    } else {
+        leftAncestor ?: rightAncestor
+    }
 }
