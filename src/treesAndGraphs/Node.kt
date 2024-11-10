@@ -1,7 +1,7 @@
 package treesAndGraphs
 
 
-data class Node(val value: Int, var isVisited: Boolean = false, val children: MutableList<Node> = mutableListOf()) {
+data class Node(val value: String, var isVisited: Boolean = false, val children: MutableList<Node> = mutableListOf()) {
     fun addChild(child: Node) {
         children.add(child)
     }
